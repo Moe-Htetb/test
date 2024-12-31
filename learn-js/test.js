@@ -42,4 +42,51 @@
 
 //count
 
-let count = 0;
+// let count = 0;
+let date = new Date();
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+// console.log(monthNames.pop());
+// console.log(monthNames.push("kml"));
+// console.log(monthNames.shift());
+// console.log(monthNames.unshift("January"));
+
+// console.log(monthNames);
+
+// console.log(monthNames.join("\n"));
+// console.log(monthNames.slice(1, 4));
+// console.log(monthNames.splice(1, 4));
+// console.log(monthNames);
+const dayNames = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+console.table([...dayNames, ...monthNames]);
+
+console.log(isNaN(1));
+console.log(Array.isArray(monthNames));
+
+// console.log(date);
+// console.log(Date.now());
+// console.log(date.getFullYear());
+// console.log(dayNames[date.getDay()]);
+// console.log(monthNames[date.getMonth()]);
