@@ -7,6 +7,37 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h2>kkk</h2>
+    <header class="border-b-2 border-black w-full z-50 fixed bg-white">
+      <div class="w-[80%] mx-auto">
+        <div class="flex justify-between py-2">
+          <h1 class="text-3xl font-serif">Logo</h1>
+          <button id="btn" class="bg-black text-2xl text-white py-1 px-3">
+            X
+          </button>
+        </div>
+      </div>
+    </header>
+    <section
+      id="nav"
+      class="w-[400px] bg-gray-300 h-screen pt-20 right-0 fixed z-40 px-10 translate-x-full transition-all"
+    >
+      <nav>
+        <p>Home</p>
+        <p>About</p>
+        <p>Services</p>
+      </nav>
+    </section>
+    <section class="w-[80%] mx-auto pt-20">
+      <h2 class="text-xl mb-2">Your Skill (<span id="count">0</span>)</h2>
+      <div class="flex gap-3">
+        <button class="btn px-5 py-2 border border-black rounded-md">a</button>
+        <button class="btn px-5 py-2 border border-black rounded-md">b</button>
+        <button class="btn px-5 py-2 border border-black rounded-md">c</button>
+        <button class="btn px-5 py-2 border border-black rounded-md">d</button>
+        <button class="btn px-5 py-2 border border-black rounded-md">e</button>
+        <button class="btn px-5 py-2 border border-black rounded-md">f</button>
+      </div>
+    </section>
+    <script src="js/caculator.js"></script>
   </body>
 </html>
