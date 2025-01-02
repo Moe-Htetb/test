@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  </head>
+  <body>
+    <h1>Area Caculator</h1>
+    <div>
+      <p style="display: inline-block; width: 100px">
+        Result: <span id="result"></span>
+      </p>
+      <button id="store" class="store">store</button>
+      <button id="clear" class="clear">clear</button>
+    </div>
+    <input type="number" placeholder="width" id="width" />
+    <input type="number" placeholder="high" id="high" />
+    <button id="caculate">caculate</button>
+
+    <ul id="storeResult">
+      <!-- <li>something</li> -->
+    </ul>
+  </body>
+  <script>
+    const width = document.getElementById("width");
+    const high = document.getElementById("high");
+    const caculate = document.getElementById("caculate");
+    const store = document.getElementById("store");
+    const clear = document.getElementById("clear");
+    const result = document.getElementById("result");
+    const storeResult = document.getElementById("storeResult");
+
+    let lastWidth = 0; // To store the last calculated width
+    let lastHigh = 0; // To store the last calculated height
+    let lastResult = "";
+
+    const area = (w, h) => w * h;
+
+    caculate.addEventListener("click", () => {
+      const w = width.valueAsNumber;
+      const h = high.valueAsNumber;
+
+      const ans = area(w, h);
+      result.innerText = ans;
+
+      lastWidth = w;
+      lastHigh = h;
+      lastResult = ans;
+
+      width.value = "";
+      high.value = "";
+    });
+
+    // console.log(area);
+    clear.onclick = () => {
+      result.innerText = "";
+    };
+
+    store.onclick = () => {
+      console.log(lastHigh, lastWidth, lastResult);
+      storeResult.innerHTML += `<li>${lastWidth}ft * ${lastHigh}ft = ${lastResult}</li>`;
+    };
+  </script>
+</html>
