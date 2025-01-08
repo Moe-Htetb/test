@@ -5,6 +5,7 @@ const addTaskBtn = document.querySelector("#addTaskBtn");
 const listGroup = document.querySelector("#listGroup");
 const taskTotal = document.querySelector("#taskTotal");
 const doneTaskTotal = document.querySelector("#doneTaskTotal");
+
 //process
 const addList = () => {
   listGroup.append(createNewList(taskInput.value));
@@ -75,17 +76,72 @@ const createNewList = (currentTask) => {
         </div>
   `;
 
+  // const listDoneChecked = list.querySelector(".list-done-check");
+  // const listTask = list.querySelector(".list-task");
+  // const listDeleteBtn = list.querySelector(".list-del-btn");
+  // const listEditBtn = list.querySelector(".list-edit-btn");
+
+  // listEditBtn.addEventListener("click", () => {
+  //   listEditBtn.setAttribute("disabled", true);
+  //   listDoneChecked.setAttribute("disabled", true);
+  //   const newTextInput = document.createElement("input");
+  //   newTextInput.className =
+  //     "border border-stone-950 px-2 w-[180px] py-1 font-mono focus-visible:outline-none";
+  //   newTextInput.value = currentTask;
+  //   listTask.after(newTextInput);
+  //   newTextInput.focus();
+  //   listTask.classList.add("hidden");
+
+  //   newTextInput.addEventListener("blur", () => {
+  //     listDoneChecked.removeAttribute("disabled");
+  //     listEditBtn.removeAttribute("disabled");
+
+  //     listTask.innerText = newTextInput.value;
+  //     listTask.classList.remove("hidden");
+  //     newTextInput.remove();
+  //   });
+  // });
+
+  // listDeleteBtn.addEventListener("click", () => {
+  //   if (confirm("Are you sure to delete")) {
+  //     list.remove();
+  //   }
+  // });
+
+  // listDoneChecked.addEventListener("change", () => {
+  //   // console.log(`${currentTask} is done`);
+  //   updateDneTaskTotal();
+  //   listTask.classList.toggle("line-through");
+  //   list.classList.toggle("opacity-20");
+  //   list.classList.toggle("scale-90");
+  //   list.classList.add("duration-200");
+  //   if (listDoneChecked.checked) {
+  //     listEditBtn.setAttribute("disabled", true);
+  //   } else {
+  //     listEditBtn.removeAttribute("disabled");
+  //   }
+  // });
+  return list;
+};
+
+const handleListGroup = (event) => {
+  const list = event.target.closest(".list");
+
   const listDoneChecked = list.querySelector(".list-done-check");
   const listTask = list.querySelector(".list-task");
-  const listDeleteBtn = list.querySelector(".list-del-btn");
+  // const listDeleteBtn = list.querySelector(".list-del-btn");
   const listEditBtn = list.querySelector(".list-edit-btn");
 
-  listEditBtn.addEventListener("click", () => {
+  console.log(list);
+
+  if (event.target.classList.contains("list-edit-btn")) {
+    // console.log("u edit");
     listEditBtn.setAttribute("disabled", true);
     listDoneChecked.setAttribute("disabled", true);
     const newTextInput = document.createElement("input");
     newTextInput.className =
       "border border-stone-950 px-2 w-[180px] py-1 font-mono focus-visible:outline-none";
+    const currentTask = listTask.innerText;
     newTextInput.value = currentTask;
     listTask.after(newTextInput);
     newTextInput.focus();
@@ -99,16 +155,15 @@ const createNewList = (currentTask) => {
       listTask.classList.remove("hidden");
       newTextInput.remove();
     });
-  });
-
-  listDeleteBtn.addEventListener("click", () => {
+  }
+  if (event.target.classList.contains("list-del-btn")) {
     if (confirm("Are you sure to delete")) {
       list.remove();
+      updateTaskTotal();
     }
-  });
-
-  listDoneChecked.addEventListener("change", () => {
-    // console.log(`${currentTask} is done`);
+  }
+  if (event.target.classList.contains("list-done-check")) {
+    // console.log("u check");
     updateDneTaskTotal();
     listTask.classList.toggle("line-through");
     list.classList.toggle("opacity-20");
@@ -119,8 +174,7 @@ const createNewList = (currentTask) => {
     } else {
       listEditBtn.removeAttribute("disabled");
     }
-  });
-  return list;
+  }
 };
-
 addTaskBtn.addEventListener("click", addList);
+listGroup.addEventListener("click", handleListGroup);
