@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export const updateTaskTotal = () => {
   // count list and update
   const lists = document.querySelectorAll(".list");
@@ -37,13 +39,32 @@ export const deleteList = (listId) => {
   // console.log("U del");
   const currentList = document.querySelector(`#${listId}`);
   // console.log(currentList);
-  if (window.confirm("Are you sure to delete ?")) {
-    currentList.classList.add("animate__animated", "animate__hinge");
+  // if (window.confirm("Are you sure to delete ?")) {
+  //   currentList.classList.add("animate__animated", "animate__hinge");
 
-    currentList.remove();
-    updateDoneTaskTotal();
-    updateTaskTotal();
-  }
+  //   currentList.remove();
+  //   // currentList.classList.add("slide-to-right");
+  //   // updateDoneTaskTotal();
+  //   // updateTaskTotal();
+  // }
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success",
+      });
+      currentList.remove();
+    }
+  });
 };
 
 export const editList = (listId) => {
@@ -107,12 +128,12 @@ export const doneList = (listId) => {
   } else {
     listEditBtn.removeAttribute("disabled");
   }
-  updateDoneTaskTotal();
+  // updateDoneTaskTotal();
 };
 
 export const addList = (text) => {
   // console.log(taskInput.value);
   listGroup.append(createNewList(text));
   taskInput.value = null;
-  updateTaskTotal();
+  // updateTaskTotal();
 };
